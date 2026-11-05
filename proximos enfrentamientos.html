@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Próximos y Recientes Enfrentamientos - IRON GRIP NATION</title>
+
+    <style>
+        html {
+            overflow-y: scroll;
+        }
+
+        /* ==========================================
+           ANIMACIÓN DE APERTURA Y CIERRE
+           RESULTADOS EVW BUDAPEST 2026
+           ========================================== */
+
+        main .container details {
+            interpolate-size: allow-keywords;
+        }
+
+        /* Estado cerrado */
+        main .container details::details-content {
+            display: block;
+            block-size: 0;
+            opacity: 0;
+            overflow: hidden;
+
+            transition:
+                block-size 0.5s ease,
+                opacity 0.4s ease,
+                content-visibility 0.5s allow-discrete;
+        }
+
+        /* Estado abierto */
+        main .container details[open]::details-content {
+            block-size: auto;
+            opacity: 1;
+        }
+
+        /* Aparición progresiva de la tabla */
+        main .container details[open] table {
+            animation: aparecerResultados 0.5s ease both;
+        }
+
+        @keyframes aparecerResultados {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Animación de la flecha */
+        main .container details summary span:last-child {
+            display: inline-block;
+            transition: transform 0.4s ease;
+        }
+
+        main .container details[open] summary span:last-child {
+            transform: rotate(180deg);
+        }
+
+        /* ==========================================
+           CORRECCIÓN DE LA TABLA EN PC
+           ========================================== */
+
+        main .container {
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+        }
+
+        main .container details {
+            width: 100%;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        main .container table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        main .container th,
+        main .container td {
+            padding: 14px 12px;
+            text-align: center;
+            vertical-align: middle;
+            overflow-wrap: break-word;
+            word-break: normal;
+        }
+
+        /* Distribución de las cinco columnas */
+        main .container th:nth-child(1),
+        main .container td:nth-child(1) {
+            width: 24%;
+        }
+
+        main .container th:nth-child(2),
+        main .container td:nth-child(2) {
+            width: 25%;
+        }
+
+        main .container th:nth-child(3),
+        main .container td:nth-child(3) {
+            width: 10%;
+        }
+
+        main .container th:nth-child(4),
+        main .container td:nth-child(4) {
+            width: 25%;
+        }
+
+        main .container th:nth-child(5),
+        main .container td:nth-child(5) {
+            width: 16%;
+        }
+
+        /* Evita que los resultados se deformen */
+        main .container td:nth-child(3) {
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        /* Accesibilidad */
+        @media (prefers-reduced-motion: reduce) {
+            main .container details::details-content,
+            main .container details summary span:last-child,
+            main .container details[open] table {
+                transition: none;
+                animation: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BARRA PRINCIPAL DE NAVEGACIÓN -->
+    <header>
+        <center>
+            <h1>IRON GRIP NATION</h1>
+            <h2>Enfrentamientos</h2>
+        </center>
+    </header>
+
+    <nav>
+        <ul style="list-style: none; padding: 0; display: flex; gap: 15px; justify-content: center;">
+            <li><a href="pagina principal.html">Inicio</a></li>
+            <li><a href="competencias famosas.html">Competencias Famosas</a></li>
+            <li><a href="proximos enfrentamientos.html" class="activo">Próximos Enfrentamientos</a></li>
+            <li><a href="competidores famosos.html">Competidores Famosos</a></li>
+            <li><a href="tecnicas.html">Técnicas del Armwrestling</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <h1>Enfrentamientos recientes</h1>
+
+        <div class="container">
+            <details>
+                <summary>
+                    <span>🏆 EVW Budapest 2026 — Ver resultados de los combates</span>
+                    <span>▼</span>
+                </summary>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Categoría</th>
+                            <th>Luchador 1</th>
+                            <th>Rdo</th>
+                            <th>Luchador 2</th>
+                            <th>Rondas</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td><strong>Super Heavy (+115kg)</strong> 👑</td>
+                            <td>Vitaly Laletin 🇷🇺</td>
+                            <td><strong>4 - 0</strong></td>
+                            <td>Kamil Jablonski 🇵🇱</td>
+                            <td>4/7</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Heavyweight (115kg)</strong></td>
+                            <td>Ibragim Sagov 🇷🇺</td>
+                            <td><strong>4 - 3</strong></td>
+                            <td>Devon Larratt 🇨🇦</td>
+                            <td>7/7</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Heavyweight (Interino)</strong></td>
+                            <td>Oleg Petrenko 🇺🇦</td>
+                            <td><strong>4 - 3</strong></td>
+                            <td>Dave Chaffee 🇺🇸</td>
+                            <td>7/7</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Super Heavy (+115kg)</strong></td>
+                            <td>Georgi Tsvetkov 🇧🇬</td>
+                            <td><strong>3 - 1</strong></td>
+                            <td>Alex Kurdecha 🇵🇱</td>
+                            <td>4/5</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Light Heavy (105kg)</strong></td>
+                            <td>Serhii Kalinichenko 🇺🇦</td>
+                            <td><strong>3 - 1</strong></td>
+                            <td>Matt Mask 🇨🇦</td>
+                            <td>4/5</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Middleweight (95kg)</strong></td>
+                            <td>Oleksandr Telyatnik 🇺🇦</td>
+                            <td><strong>3 - 0</strong></td>
+                            <td>Todd Hutchings 🇺🇸</td>
+                            <td>3/5</td>
+                        </tr>
+
+                        <tr>
+                            <td><strong>Welterweight (85kg)</strong></td>
+                            <td>Janis Amolins 🇱🇻</td>
+                            <td><strong>3 - 1</strong></td>
+                            <td>Davit Samushia 🇬🇪</td>
+                            <td>4/5</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </details>
+        </div>
+
+        <h1>Próximos Enfrentamientos</h1>
+
+        <h2>Campeonato Mundial WAF 2026</h2>
+        <ul>
+            <li><strong>Fechas:</strong> 26 de octubre – 7 de noviembre de 2026</li>
+            <li><strong>Sede:</strong> Nueva Delhi, India</li>
+            <li><strong>Perfil:</strong> El torneo amateur y de selecciones nacionales más importante del circuito global, reuniendo a campeones continentales de todo el mundo.</li>
+        </ul>
+
+        <h2>Campeonato Mundial IFA 2026</h2>
+        <ul>
+            <li><strong>Fechas:</strong> 26 – 30 de noviembre de 2026</li>
+            <li><strong>Sede:</strong> Bakú, Azerbaiyán</li>
+            <li><strong>Perfil:</strong> Cita mundialista de gran envergadura organizada por la International Federation of Armwrestling para definir títulos globales en múltiples categorías de peso.</li>
+        </ul>
+
+        <h2>East vs. West / King of the Table (Próximas Carteleras PPV)</h2>
+        <ul>
+            <li><strong>Proyección:</strong> Cierre de temporada 2026</li>
+            <li><strong>Perfil:</strong> Anuncios inminentes de los enfrentamientos súper-estelares que definirán las defensas titulares y unificaciones de los cinturones más codiciados del profesionalismo mundial.</li>
+        </ul>
+
+    </main>
+
+    <footer>
+        <br>
+        <a href="pagina principal.html" class="activo">Volver al inicio</a>
+        <br><br><br>
+
+        <p>&copy; 2026 IRON GRIP NATION. Todos los derechos reservados. | <a href="#">Contacto</a></p>
+    </footer>
+
+</body>
+</html>

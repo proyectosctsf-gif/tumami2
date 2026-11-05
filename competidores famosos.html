@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competidores Famosos - IRON GRIP NATION</title>
+
+    <style>
+        /* ==========================================
+           1. FUENTES, RESET Y VARIABLES NEÓN
+           ========================================== */
+
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Montserrat:wght@400;600;800&display=swap');
+
+        :root {
+            --rojo-neon: #ff003c;
+            --rojo-fuego: #d32f2f;
+            --brillo-rojo: rgba(255, 0, 60, 0.4);
+            --fondo-oscuro: #0a0a0c;
+            --tarjeta-bg: #141419;
+            --texto-blanco: #ffffff;
+            --texto-gris: #a0a0ab;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-blanco);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 0 15px;
+            animation: fadeInPage 0.8s ease-out;
+        }
+
+        /* Animación de entrada */
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================
+           2. ENCABEZADO Y TÍTULOS
+           ========================================== */
+
+        header {
+            background: linear-gradient(180deg, #181820 0%, #0a0a0c 100%);
+            padding: 35px 0 20px 0;
+            border-bottom: 3px solid var(--rojo-neon);
+            box-shadow: 0 4px 20px rgba(255, 0, 60, 0.25);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1;
+            background: linear-gradient(90deg, #ffffff, #ff4d4d, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: brilloTexto 4s linear infinite;
+            text-shadow: 0 0 25px rgba(255, 0, 60, 0.5);
+        }
+
+        @keyframes brilloTexto {
+            0% {
+                background-position: 0% center;
+            }
+            100% {
+                background-position: 200% center;
+            }
+        }
+
+        header h2 {
+            font-family: 'Teko', sans-serif;
+            color: var(--rojo-neon);
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           3. BARRA DE NAVEGACIÓN
+           ========================================== */
+
+        nav {
+            background-color: #121218;
+            padding: 15px 0;
+            margin-bottom: 35px;
+            border-radius: 8px;
+            border: 1px solid #22222e;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--texto-gris);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--rojo-neon);
+            box-shadow: 0 0 10px var(--rojo-neon);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover,
+        nav a.activo {
+            color: var(--texto-blanco);
+            background-color: rgba(255, 0, 60, 0.1);
+        }
+
+        nav a:hover::after,
+        nav a.activo::after {
+            width: 80%;
+        }
+
+        /* ==========================================
+           4. CONTENEDOR PRINCIPAL
+           ========================================== */
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        main > h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.8rem;
+            color: #fff;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        h2,
+        h3 {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--rojo-neon);
+            margin: 25px 0 15px 0;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        /* ==========================================
+           5. TARJETAS DE COMPETIDORES
+           Imagen izquierda, datos derecha
+           ========================================== */
+
+        main > div {
+            background-color: var(--tarjeta-bg);
+            border: 1px solid #252533;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+            display: grid;
+            grid-template-columns: 180px minmax(0, 1fr);
+            grid-template-rows: auto 1fr;
+            column-gap: 50px;
+            align-items: center;
+        }
+
+        /* Efecto de luz al pasar el cursor */
+
+        main > div:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--rojo-neon);
+            box-shadow: 0 12px 30px rgba(255, 0, 60, 0.3);
+        }
+
+        /* Imagen del competidor */
+
+        main > div img {
+            width: 180px;
+            height: auto;
+            max-width: 100%;
+            border-radius: 8px;
+            transition: transform 0.5s ease;
+            grid-column: 1;
+            grid-row: 1 / 3;
+            align-self: center;
+        }
+
+        main > div:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Nombre */
+
+        main > div h3 {
+            grid-column: 2;
+            grid-row: 1;
+            margin: 0 0 8px 0;
+            align-self: end;
+        }
+
+        /* Estadísticas */
+
+        main > div ul {
+            grid-column: 2;
+            grid-row: 2;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+            line-height: 1.6;
+            align-self: start;
+        }
+
+        main > div ul li {
+            padding: 6px 0;
+            border-bottom: 1px dashed #222230;
+            color: var(--texto-gris);
+        }
+
+        main > div ul li strong {
+            color: #fff;
+        }
+
+        /* ==========================================
+           6. FOOTER
+           ========================================== */
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222230;
+            margin-top: 50px;
+            color: var(--texto-gris);
+        }
+
+        footer a {
+            color: var(--rojo-neon);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--rojo-neon);
+        }
+
+        /* ==========================================
+           7. ANIMACIÓN NEÓN
+           ========================================== */
+
+        .activo {
+            animation: pulsoNeon 2s infinite alternate;
+        }
+
+        @keyframes pulsoNeon {
+            0% {
+                box-shadow: 0 0 5px var(--rojo-neon);
+            }
+            100% {
+                box-shadow: 0 0 18px var(--rojo-neon),
+                            0 0 25px var(--rojo-neon);
+            }
+        }
+
+        /* ==========================================
+           8. ADAPTACIÓN PARA MÓVILES
+           ========================================== */
+
+        @media screen and (max-width: 650px) {
+
+            body {
+                padding: 0 10px;
+            }
+
+            header h1 {
+                font-size: 3rem;
+            }
+
+            nav ul {
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+                padding: 7px 9px;
+            }
+
+            main > div {
+                grid-template-columns: 110px minmax(0, 1fr);
+                column-gap: 12px;
+                padding: 14px;
+            }
+
+            main > div img {
+                width: 110px;
+            }
+
+            main > div h3 {
+                font-size: 1.4rem;
+            }
+
+            main > div ul {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+        }
+
+        @media screen and (max-width: 400px) {
+
+            main > div {
+                grid-template-columns: 90px minmax(0, 1fr);
+                column-gap: 10px;
+                padding: 10px;
+            }
+
+            main > div img {
+                width: 90px;
+            }
+
+            main > div h3 {
+                font-size: 1.2rem;
+            }
+
+            main > div ul {
+                font-size: 11px;
+            }
+        }
+
+        /* Accesibilidad */
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- BARRA PRINCIPAL DE NAVEGACIÓN -->
+    <header>
+        <center>
+            <h1>IRON GRIP NATION</h1>
+            <h2>Competidores</h2>
+        </center>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="pagina principal.html">Inicio</a></li>
+            <li><a href="competencias famosas.html">Competencias Famosas</a></li>
+            <li><a href="proximos enfrentamientos.html">Próximos Enfrentamientos</a></li>
+            <li><a href="competidores famosos.html" class="activo">Competidores Famosos</a></li>
+            <li><a href="tecnicas.html">Técnicas del Armwrestling</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <h1>Competidores Famosos</h1>
+
+        <!-- Devon Larratt -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/vSckoB0cY6XimIms.png" alt="Devon Larratt">
+            <h3>Devon Larratt</h3>
+            <ul>
+                <li><strong>Edad:</strong> 50 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 35 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 10</li>
+                <li><strong>País:</strong> Canadá</li>
+                <li><strong>Altura:</strong> 6'5" (196 cm)</li>
+                <li><strong>Peso:</strong> 270 lbs (122 kg)</li>
+                <li><strong>Bíceps:</strong> 18.5" (47 cm)</li>
+                <li><strong>Antebrazo:</strong> 16.9" (43 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Levan Saginashvili -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/kq3ttoNNBTTK9GKY.png" alt="Levan Saginashvili">
+            <h3>Levan Saginashvili</h3>
+            <ul>
+                <li><strong>Edad:</strong> 37 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 30 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 0</li>
+                <li><strong>País:</strong> Georgia</li>
+                <li><strong>Altura:</strong> 6'3" (191 cm)</li>
+                <li><strong>Peso:</strong> 375 lbs (170 kg)</li>
+                <li><strong>Bíceps:</strong> 23.6" (60 cm)</li>
+                <li><strong>Antebrazo:</strong> 20.5" (52 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Ermes Gasparini -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/HIMtrwt1QigOsU06.png" alt="Ermes Gasparini">
+            <h3>Ermes Gasparini</h3>
+            <ul>
+                <li><strong>Edad:</strong> 32 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 18 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 6</li>
+                <li><strong>País:</strong> Italia</li>
+                <li><strong>Altura:</strong> 6'2" (188 cm)</li>
+                <li><strong>Peso:</strong> 287 lbs (130 kg)</li>
+                <li><strong>Bíceps:</strong> 21.3" (54 cm)</li>
+                <li><strong>Antebrazo:</strong> 19" (48 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Vitalii Laletin -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/v2PXNNa1dDSwVagr.png" alt="Vitalii Laletin">
+            <h3>Vitalii Laletin</h3>
+            <ul>
+                <li><strong>Edad:</strong> 36 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 25 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 4</li>
+                <li><strong>País:</strong> Rusia</li>
+                <li><strong>Altura:</strong> 6'8" (205 cm)</li>
+                <li><strong>Peso:</strong> 309 lbs (140 kg)</li>
+                <li><strong>Bíceps:</strong> 18.9" (48 cm)</li>
+                <li><strong>Antebrazo:</strong> 18.9" (48 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Alizhan Muratov -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/ZuwsKwbq0WagelDl.jpg" alt="Alizhan Muratov">
+            <h3>Alizhan Muratov</h3>
+            <ul>
+                <li><strong>Edad:</strong> 30 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 6 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 2</li>
+                <li><strong>País:</strong> Kazajistán</li>
+                <li><strong>Altura:</strong> 6'1" (185 cm)</li>
+                <li><strong>Peso:</strong> 231 lbs (105 kg)</li>
+                <li><strong>Bíceps:</strong> 18.9" (48 cm)</li>
+                <li><strong>Antebrazo:</strong> 16.5" (42 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Artyom Morozov -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/xvjOlpRbhHVUs9Z2.png" alt="Artyom Morozov">
+            <h3>Artyom Morozov</h3>
+            <ul>
+                <li><strong>Edad:</strong> 28 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 13 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 5</li>
+                <li><strong>País:</strong> Kazajistán</li>
+                <li><strong>Altura:</strong> 6'4" (195 cm)</li>
+                <li><strong>Peso:</strong> 313 lbs (142 kg)</li>
+                <li><strong>Bíceps:</strong> 21.3" (54 cm)</li>
+                <li><strong>Antebrazo:</strong> 19.1" (49 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Michael Todd -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/d30ipL8vx9beedFX.png" alt="Michael Todd">
+            <h3>Michael Todd</h3>
+            <ul>
+                <li><strong>Edad:</strong> 52 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 40 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 15</li>
+                <li><strong>País:</strong> Estados Unidos</li>
+                <li><strong>Altura:</strong> 6'1" (185 cm)</li>
+                <li><strong>Peso:</strong> 255 lbs (115 kg)</li>
+                <li><strong>Bíceps:</strong> 19.0" (48 cm)</li>
+                <li><strong>Antebrazo:</strong> 18.0" (46 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Dave Chaffee -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/NNC1FjFYu7j22xWs.png" alt="Dave Chaffee">
+            <h3>Dave Chaffee</h3>
+            <ul>
+                <li><strong>Edad:</strong> 48 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 26 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 12</li>
+                <li><strong>País:</strong> Estados Unidos</li>
+                <li><strong>Altura:</strong> 6'3" (191 cm)</li>
+                <li><strong>Peso:</strong> 265 lbs (120 kg)</li>
+                <li><strong>Bíceps:</strong> 20.0" (51 cm)</li>
+                <li><strong>Antebrazo:</strong> 18.0" (46 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Denis Cyplenkov -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/E7htN9u43T6j6Pya.png" alt="Denis Cyplenkov">
+            <h3>Denis Cyplenkov</h3>
+            <ul>
+                <li><strong>Edad:</strong> 44 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 28 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 5</li>
+                <li><strong>País:</strong> Ucrania</li>
+                <li><strong>Altura:</strong> 6'1" (186 cm)</li>
+                <li><strong>Peso:</strong> 315 lbs (143 kg)</li>
+                <li><strong>Bíceps:</strong> 24.0" (61 cm)</li>
+                <li><strong>Antebrazo:</strong> 21.2" (54 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Alexey Voevoda -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/wfctOkNp6EIQMXet.png" alt="Alexey Voevoda">
+            <h3>Alexey Voevoda</h3>
+            <ul>
+                <li><strong>Edad:</strong> 46 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 45 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 10</li>
+                <li><strong>País:</strong> Rusia</li>
+                <li><strong>Altura:</strong> 6'3" (193 cm)</li>
+                <li><strong>Peso:</strong> 243 lbs (110 kg)</li>
+                <li><strong>Bíceps:</strong></li>
+                <li><strong>Antebrazo:</strong></li>
+            </ul>
+        </div>
+
+        <!-- John Brzenk -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/d8GGjkHdPQrduH82.png" alt="John Brzenk">
+            <h3>John Brzenk</h3>
+            <ul>
+                <li><strong>Edad:</strong> 62 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 120 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 25</li>
+                <li><strong>País:</strong> Estados Unidos</li>
+                <li><strong>Altura:</strong> 5'11" (181 cm)</li>
+                <li><strong>Peso:</strong> 229 lbs (104 kg)</li>
+                <li><strong>Bíceps:</strong> 16.9" (43 cm)</li>
+                <li><strong>Antebrazo:</strong> 16.1" (41 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Oleg Petrenko -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/cp5fOWcnRTEHGBXd.png" alt="Oleg Petrenko">
+            <h3>Oleg Petrenko</h3>
+            <ul>
+                <li><strong>Edad:</strong> 27 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 16 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 5</li>
+                <li><strong>País:</strong> Ucrania</li>
+                <li><strong>Altura:</strong> 5'11" (180 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Alex Kurdecha -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/EUB8lgMQmAj67bPD.png" alt="Alex Kurdecha">
+            <h3>Alex Kurdecha</h3>
+            <ul>
+                <li><strong>Edad:</strong> 37 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 9 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 12</li>
+                <li><strong>País:</strong> Polonia</li>
+                <li><strong>Altura:</strong> 6'7" (201 cm)</li>
+                <li><strong>Peso:</strong> 331 lbs (150 kg)</li>
+                <li><strong>Bíceps:</strong> 21.3" (54 cm)</li>
+                <li><strong>Antebrazo:</strong> 17.7" (45 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Todd Hutchings -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/6QnfxvktVQIV3SD0.png" alt="Todd Hutchings">
+            <h3>Todd Hutchings</h3>
+            <ul>
+                <li><strong>Edad:</strong> 60 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 20 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 13</li>
+                <li><strong>País:</strong> Estados Unidos</li>
+                <li><strong>Altura:</strong> 5'10" (180 cm)</li>
+                <li><strong>Peso:</strong> 216 lbs (98 kg)</li>
+                <li><strong>Bíceps:</strong> 16.9" (43 cm)</li>
+                <li><strong>Antebrazo:</strong> 14.2" (36 cm)</li>
+            </ul>
+        </div>
+
+        <!-- Travis Bagent -->
+        <div>
+            <img src="https://dwnldzuxs8sjs.cloudfront.net/images/armwrestlers/CjizTWESTwGhbmdG.png" alt="Travis Bagent">
+            <h3>Travis Bagent</h3>
+            <ul>
+                <li><strong>Edad:</strong> 50 &nbsp;&nbsp;&nbsp; <strong>Victorias:</strong> 9 &nbsp;&nbsp;&nbsp; <strong>Derrotas:</strong> 6</li>
+                <li><strong>País:</strong> Estados Unidos</li>
+                <li><strong>Altura:</strong> 6'3" (191 cm)</li>
+                <li><strong>Peso:</strong> 276 lbs (125 kg)</li>
+                <li><strong>Bíceps:</strong> 17.7" (45 cm)</li>
+                <li><strong>Antebrazo:</strong> 15.4" (39 cm)</li>
+            </ul>
+        </div>
+
+    </main>
+
+    <footer>
+        <br>
+        <a href="pagina principal.html" class="activo">Volver al inicio</a>
+        <br><br><br>
+        <p>&copy; 2026 IRON GRIP NATION. Todos los derechos reservados. | <a href="#">Contacto</a></p>
+    </footer>
+
+</body>
+</html>

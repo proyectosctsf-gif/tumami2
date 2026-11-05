@@ -1,0 +1,306 @@
+/* ==========================================
+   1. FUENTES, RESET Y VARIABLES NEÓN
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Montserrat:wght@400;600;800&display=swap');
+
+:root {
+    --rojo-neon: #ff003c;
+    --rojo-fuego: #d32f2f;
+    --brillo-rojo: rgba(255, 0, 60, 0.4);
+    --fondo-oscuro: #0a0a0c;
+    --tarjeta-bg: #141419;
+    --texto-blanco: #ffffff;
+    --texto-gris: #a0a0ab;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    overflow-y: scroll; /* Evita que la página salte al abrir/cerrar detalles */
+}
+
+body {
+    background-color: var(--fondo-oscuro);
+    color: var(--texto-blanco);
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    padding: 0 15px;
+    animation: fadeInPage 0.8s ease-out;
+}
+
+/* Animación de entrada de la página */
+@keyframes fadeInPage {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   2. ENCABEZADO Y TÍTULOS FACHEROS
+   ========================================== */
+header {
+    background: linear-gradient(180deg, #181820 0%, #0a0a0c 100%);
+    padding: 35px 0 20px 0;
+    border-bottom: 3px solid var(--rojo-neon);
+    box-shadow: 0 4px 20px rgba(255, 0, 60, 0.25);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+header h1 {
+    font-family: 'Teko', sans-serif;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    line-height: 1;
+    background: linear-gradient(90deg, #ffffff, #ff4d4d, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brilloTexto 4s linear infinite;
+    text-shadow: 0 0 25px rgba(255, 0, 60, 0.5);
+}
+
+@keyframes brilloTexto {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+header h2 {
+    font-family: 'Teko', sans-serif;
+    color: var(--rojo-neon);
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   3. BARRA DE NAVEGACIÓN FUTURISTA
+   ========================================== */
+nav {
+    background-color: #121218;
+    padding: 15px 0;
+    margin-bottom: 35px;
+    border-radius: 8px;
+    border: 1px solid #22222e;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--texto-gris);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Línea Neón animada en links */
+nav a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 3px;
+    bottom: 0;
+    left: 50%;
+    background-color: var(--rojo-neon);
+    box-shadow: 0 0 10px var(--rojo-neon);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav a:hover, 
+nav a.activo {
+    color: var(--texto-blanco);
+    background-color: rgba(255, 0, 60, 0.1);
+}
+
+nav a:hover::after, 
+nav a.activo::after {
+    width: 80%;
+}
+
+/* ==========================================
+   4. TARJETAS 3D (COMPETIDORES Y NOTICIAS)
+   ========================================== */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+
+h1, h2, h3 {
+    font-family: 'Teko', sans-serif;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+h1 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; }
+h2 { font-size: 2.2rem; color: var(--rojo-neon); margin: 25px 0 15px 0; }
+h3 { font-size: 1.8rem; color: #fff; }
+
+div {
+    background-color: var(--tarjeta-bg);
+    border: 1px solid #252533;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Efecto de luz al pasar el cursor sobre las tarjetas */
+div:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: var(--rojo-neon);
+    box-shadow: 0 12px 30px rgba(255, 0, 60, 0.3);
+}
+
+div img {
+    border-radius: 8px;
+    transition: transform 0.5s ease;
+}
+
+div:hover img {
+    transform: scale(1.03);
+}
+
+/* Listas estilizadas */
+ul {
+    list-style: none;
+}
+
+ul li {
+    padding: 6px 0;
+    border-bottom: 1px dashed #222230;
+    color: var(--texto-gris);
+}
+
+ul li strong {
+    color: #fff;
+}
+
+/* ==========================================
+   5. TABLA DE ENFRENTAMIENTOS DE ALTO IMPACTO
+   ========================================== */
+details {
+    background-color: var(--tarjeta-bg);
+    border: 1px solid #252533;
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+details[open] {
+    border-color: var(--rojo-neon);
+    box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+}
+
+summary {
+    cursor: pointer;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.5rem;
+    color: var(--rojo-neon);
+    letter-spacing: 1px;
+    outline: none;
+    transition: color 0.2s ease;
+}
+
+summary:hover {
+    color: #ff5577;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 14px 18px;
+    text-align: left;
+}
+
+th {
+    background-color: #1e1e2a;
+    color: var(--rojo-neon);
+    font-family: 'Teko', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+tr {
+    background-color: #121218;
+    border-bottom: 1px solid #222230;
+    transition: background-color 0.2s ease;
+}
+
+tr:hover {
+    background-color: rgba(255, 0, 60, 0.08);
+}
+
+/* ==========================================
+   6. BOTONES CON PULSO NEÓN (EFECTO BOMBILLA)
+   ========================================== */
+.btn-adelantar, .activo {
+    animation: pulsoNeon 2s infinite alternate;
+}
+
+@keyframes pulsoNeon {
+    0% {
+        box-shadow: 0 0 5px var(--rojo-neon);
+    }
+    100% {
+        box-shadow: 0 0 18px var(--rojo-neon), 0 0 25px var(--rojo-neon);
+    }
+}
+
+/* ==========================================
+   7. FOOTER ELEGANTE
+   ========================================== */
+footer {
+    text-align: center;
+    padding: 40px 0;
+    border-top: 1px solid #222230;
+    margin-top: 50px;
+    color: var(--texto-gris);
+}
+
+footer a {
+    color: var(--rojo-neon);
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px var(--rojo-neon);
+}
+
