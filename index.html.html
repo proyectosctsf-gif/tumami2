@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON GRIP NATION - Armwrestling</title>
+
+    <!-- ESTILOS CSS CON TEMA NEÓN -->
+    <style>
+        /* ==========================================
+           1. FUENTES, RESET Y VARIABLES NEÓN
+           ========================================== */
+        @import url('https://fonts.googleapis.com/css2?family=Teko:wght@600;700&family=Montserrat:wght@400;600;800&display=swap');
+
+        :root {
+            --rojo-neon: #ff003c;
+            --rojo-fuego: #d32f2f;
+            --brillo-rojo: rgba(255, 0, 60, 0.4);
+            --fondo-oscuro: #0a0a0c;
+            --tarjeta-bg: #141419;
+            --texto-blanco: #ffffff;
+            --texto-gris: #a0a0ab;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            background-color: var(--fondo-oscuro);
+            color: var(--texto-blanco);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 0 15px;
+            animation: fadeInPage 0.8s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ==========================================
+           2. ENCABEZADO Y TÍTULOS
+           ========================================== */
+        header {
+            background: linear-gradient(180deg, #181820 0%, #0a0a0c 100%);
+            padding: 35px 0 20px 0;
+            border-bottom: 3px solid var(--rojo-neon);
+            box-shadow: 0 4px 20px rgba(255, 0, 60, 0.25);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1;
+            background: linear-gradient(90deg, #ffffff, #ff4d4d, #ffffff);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: brilloTexto 4s linear infinite;
+            text-shadow: 0 0 25px rgba(255, 0, 60, 0.5);
+        }
+
+        @keyframes brilloTexto {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        header h2 {
+            font-family: 'Teko', sans-serif;
+            color: var(--rojo-neon);
+            font-size: 1.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* ==========================================
+           3. BARRA DE NAVEGACIÓN
+           ========================================== */
+        nav {
+            background-color: #121218;
+            padding: 15px 0;
+            margin-bottom: 35px;
+            border-radius: 8px;
+            border: 1px solid #22222e;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--texto-gris);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 8px 16px;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--rojo-neon);
+            box-shadow: 0 0 10px var(--rojo-neon);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        nav a:hover,
+        nav a.activo {
+            color: var(--texto-blanco);
+            background-color: rgba(255, 0, 60, 0.1);
+        }
+
+        nav a:hover::after,
+        nav a.activo::after {
+            width: 80%;
+        }
+
+        /* ==========================================
+           4. ESTRUCTURA Y MARQUESINA ÚNICA
+           ========================================== */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        h1 { font-size: 2.8rem; color: #fff; margin-bottom: 20px; }
+        h2 { font-size: 2.2rem; color: var(--rojo-neon); margin: 25px 0 15px 0; }
+        h3 { font-size: 1.8rem; color: #fff; }
+
+        .marquesina-seccion {
+            max-width: 1400px;
+            margin: 40px auto 60px;
+        }
+
+        .marquesina-titulo {
+            text-align: center;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 0, 60, 0.4);
+        }
+
+        .marquesina-container {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 10px 0;
+            mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 3%, black 97%, transparent);
+        }
+
+        .marquesina-track {
+            display: flex;
+            width: max-content;
+            gap: 25px;
+            animation: deslizarIzquierda 35s linear infinite;
+        }
+
+        /* Pausar el movimiento automático al colocar el cursor encima */
+        .marquesina-container:hover .marquesina-track {
+            animation-play-state: paused;
+        }
+
+        .marquesina-grupo {
+            display: flex;
+            gap: 25px;
+        }
+
+        .tarjeta-noticia-grande {
+            background-color: var(--tarjeta-bg);
+            border: 1px solid #252533;
+            border-radius: 12px;
+            width: 380px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .tarjeta-noticia-grande:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: var(--rojo-neon);
+            box-shadow: 0 12px 30px rgba(255, 0, 60, 0.35);
+        }
+
+        .tarjeta-noticia-grande img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+            border-bottom: 1px solid #252533;
+            transition: transform 0.5s ease;
+        }
+
+        .tarjeta-noticia-grande:hover img {
+            transform: scale(1.04);
+        }
+
+        .tarjeta-contenido {
+            padding: 22px;
+        }
+
+        .tarjeta-contenido h4 {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+
+        .tarjeta-contenido p {
+            color: var(--texto-gris);
+            font-size: 0.92rem;
+            line-height: 1.5;
+        }
+
+        @keyframes deslizarIzquierda {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ==========================================
+           5. DETAILS Y DESPLEGABLES
+           ========================================== */
+        details {
+            background-color: var(--tarjeta-bg);
+            border: 1px solid #252533;
+            border-radius: 10px;
+            padding: 18px;
+            margin: 20px auto 40px;
+            max-width: 1200px;
+            transition: all 0.3s ease;
+        }
+
+        details[open] {
+            border-color: var(--rojo-neon);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.2);
+        }
+
+        summary {
+            cursor: pointer;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8rem;
+            color: var(--rojo-neon);
+            letter-spacing: 1.5px;
+            outline: none;
+            transition: color 0.2s ease;
+            text-transform: uppercase;
+        }
+
+        summary:hover {
+            color: #ff5577;
+        }
+
+        details p {
+            color: var(--texto-gris);
+            margin-top: 12px;
+            font-size: 0.98rem;
+        }
+
+        /* ==========================================
+           ANIMACIÓN DE APERTURA Y CIERRE
+           ========================================== */
+
+        /* ==========================================
+   ANIMACIÓN DE APERTURA Y CIERRE
+   ========================================== */
+
+details {
+    interpolate-size: allow-keywords;
+}
+
+details::details-content {
+    display: block;
+    block-size: 0;
+    opacity: 0;
+    overflow: hidden;
+
+    transition:
+        block-size 0.5s ease,
+        opacity 0.4s ease,
+        content-visibility 0.5s allow-discrete;
+}
+
+details[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+}
+
+/* Animación del texto */
+details[open] p {
+    animation: aparecerContenido 0.5s ease both;
+}
+
+details[open] p:nth-of-type(2) {
+    animation-delay: 0.08s;
+}
+
+@keyframes aparecerContenido {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    details::details-content,
+    details[open] p {
+        transition: none;
+        animation: none;
+    }
+}
+        /* Accesibilidad: reducir movimiento */
+        @media (prefers-reduced-motion: reduce) {
+            details::details-content,
+            details[open] p {
+                transition: none;
+                animation: none;
+            }
+        }
+
+        /* ==========================================
+           6. FOOTER ELEGANTE
+           ========================================== */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid #222230;
+            margin-top: 50px;
+            color: var(--texto-gris);
+        }
+
+        footer a {
+            color: var(--rojo-neon);
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px var(--rojo-neon);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- BARRA PRINCIPAL DE NAVEGACIÓN -->
+    <header>
+        <h1>IRON GRIP NATION</h1>
+        <h2>Armwrestling</h2>
+    </header>
+
+    <nav class="contenedor-tabs">
+        <ul>
+            <li><a href="index.html" class="activo">Inicio</a></li>
+            <li><a href="competencias famosas.html">Competencias Famosas</a></li>
+            <li><a href="proximos enfrentamientos.html">Próximos Enfrentamientos</a></li>
+            <li><a href="competidores famosos.html">Competidores Famosos</a></li>
+            <li><a href="tecnicas.html">Técnicas del Armwrestling</a></li>
+        </ul>
+    </nav>
+
+    <!-- SECCIÓN: MÁS SOBRE EL DEPORTE -->
+    <section>
+        <details>
+            <summary>Más sobre el deporte</summary>
+
+            <p>
+                El armwrestling (lucha de brazos) es una disciplina deportiva
+                de alta exigencia que trasciende la noción convencional de
+                la fuerza física. Se trata de un deporte de combate
+                estructurado que demanda un riguroso dominio técnico,
+                biomecánica avanzada y una óptima preparación neuromuscular.
+            </p>
+
+            <p>
+                En la mesa de competencia, el rendimiento está determinado
+                por la capacidad de gestionar los ángulos de tracción,
+                la estabilidad articular y la resistencia específica del agarre.
+                A través de metodologías técnicas especializadas —tales como
+                el toproll, el hook y el press—, los atletas ejecutan
+                estrategias complejas orientadas a neutralizar al oponente
+                y asegurar el control posicional. Rigor táctico, disciplina
+                y preparación integral definen el estándar competitivo
+                de este deporte.
+            </p>
+        </details>
+    </section>
+
+    <!-- SECCIÓN: NOTICIAS DEL MOMENTO -->
+    <main class="marquesina-seccion">
+        <h2 class="marquesina-titulo">Noticias del Momento</h2>
+
+        <div class="marquesina-container">
+            <div class="marquesina-track">
+
+                <!-- Grupo Original de Noticias -->
+                <div class="marquesina-grupo">
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80" alt="Noticia 1">
+                        <div class="tarjeta-contenido">
+                            <h4>Campeonato Mundial de Armwrestling 2026</h4>
+                            <p>Los mejores atletas del planeta se reúnen este fin de semana en la mesa definitiva para disputar los cinturones de peso pesado.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=80" alt="Noticia 2">
+                        <div class="tarjeta-contenido">
+                            <h4>Técnica Avanzada: Dominio del Toproll</h4>
+                            <p>Analizamos el biomecánico y la tensión de muñeca que convirtió a los campeones actuales en leyendas imbatibles de la mesa.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80" alt="Noticia 3">
+                        <div class="tarjeta-contenido">
+                            <h4>Entrenamiento de Agarre Extremo</h4>
+                            <p>Descubre los ejercicios de rotación interna y pinza que están revolucionando las rutinas de fuerza de los competidores de élite.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop&q=80" alt="Noticia 4">
+                        <div class="tarjeta-contenido">
+                            <h4>Nuevo Récord de Press en la Mesa</h4>
+                            <p>Un contendiente sorpresa rompe todas las expectativas ejecutando un press devastador que dejó boquiabiertos a los jueces.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Grupo Duplicado para el bucle infinito -->
+                <div class="marquesina-grupo">
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800&auto=format&fit=crop&q=80" alt="Noticia 1">
+                        <div class="tarjeta-contenido">
+                            <h4>Campeonato Mundial de Armwrestling 2026</h4>
+                            <p>Los mejores atletas del planeta se reúnen este fin de semana en la mesa definitiva para disputar los cinturones de peso pesado.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=80" alt="Noticia 2">
+                        <div class="tarjeta-contenido">
+                            <h4>Técnica Avanzada: Dominio del Toproll</h4>
+                            <p>Analizamos el biomecánico y la tensión de muñeca que convirtió a los campeones actuales en leyendas imbatibles de la mesa.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=800&auto=format&fit=crop&q=80" alt="Noticia 3">
+                        <div class="tarjeta-contenido">
+                            <h4>Entrenamiento de Agarre Extremo</h4>
+                            <p>Descubre los ejercicios de rotación interna y pinza que están revolucionando las rutinas de fuerza de los competidores de élite.</p>
+                        </div>
+                    </div>
+
+                    <div class="tarjeta-noticia-grande">
+                        <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=800&auto=format&fit=crop&q=80" alt="Noticia 4">
+                        <div class="tarjeta-contenido">
+                            <h4>Nuevo Récord de Press en la Mesa</h4>
+                            <p>Un contendiente sorpresa rompe todas las expectativas ejecutando un press devastador que dejó boquiabiertos a los jueces.</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER ELEGANTE -->
+    <footer>
+        <p>
+            &copy; 2026 IRON GRIP NATION. Todos los derechos reservados.
+            | <a href="#">Contacto</a>
+        </p>
+    </footer>
+
+</body>
+</html>
